@@ -6,8 +6,7 @@ using Args;
 namespace DatabaseMinder
 {
     /// <summary>
-    /// /f "FinPowerConnect_Production.bak"
-    /// /q "D:\Sql\FinPowerConnect_Production\"
+    /// /b /f "FinPowerConnect_Production.bak" /x D:\Sql\FinPowerConnect_Production
     /// </summary>
     public class Program
     {
