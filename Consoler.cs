@@ -30,6 +30,7 @@ namespace DatabaseMinder
 
         public static void Title(string text)
         {
+            Serilog.Log.Information(text);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("------------------------");
             Console.WriteLine(text);
@@ -38,6 +39,7 @@ namespace DatabaseMinder
 
         public static void TitleStart(string text)
         {
+            Serilog.Log.Information(text);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("");
             Console.WriteLine("------------------------");
@@ -47,6 +49,7 @@ namespace DatabaseMinder
 
         public static void TitleEnd(string text)
         {
+            Serilog.Log.Information(text);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(text);
             Console.WriteLine("------------------------");
@@ -55,18 +58,21 @@ namespace DatabaseMinder
 
         public static void Write(string text)
         {
+            Serilog.Log.Information(text);
             Console.WriteLine(text);
             Trace.WriteLine(text);
         }
 
         public static void Write(string format, object arg)
         {
+            Serilog.Log.Warning($"{format} {arg}", "");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine(format, arg);
         }
 
         public static void Warn(string text, string message = null)
         {
+            Serilog.Log.Warning($"{text} {message}", "");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("-- WARN --");
             Console.WriteLine(text);
@@ -78,6 +84,7 @@ namespace DatabaseMinder
 
         public static void Error(string text)
         {
+            Serilog.Log.Error($"{text} ", "");
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("-- ERROR --");
             Console.WriteLine(text);
@@ -85,6 +92,7 @@ namespace DatabaseMinder
 
         public static void Success(bool noPrompt = false)
         {
+            Serilog.Log.Information("Success");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("");
             Console.WriteLine("");
@@ -96,6 +104,7 @@ namespace DatabaseMinder
 
         public static void ShowError(Exception e, bool noPrompt = false)
         {
+            Serilog.Log.Error(e, "Error");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Red;

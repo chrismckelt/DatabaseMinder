@@ -13,13 +13,14 @@ namespace DatabaseMinder
         public static void HandleCommand(CommandArgs command)
         {
             _command = command;
-            SetupServer(command);
-            EnsureDirectoriesExist(command.ToDirectory, command.XfromDirectory);
-            BackupIfRequested();
             ProvideHelpIfRequested(command);
+            SetupServer(command);
+            EnsureDirectoriesExist(command.SaveDirectory, command.XfromDirectory);
+            DoBackup();
+            
         }
 
-        private static void BackupIfRequested()
+        private static void DoBackup()
         {
             if (!_command.Backup)
             {
@@ -33,7 +34,7 @@ namespace DatabaseMinder
                 Database =GetDatabaseName()
                 //EncryptionOption = new BackupEncryptionOptions(BackupEncryptionAlgorithm.Aes128,BackupEncryptorType.ServerCertificate, "AutoBackup_Certificate")
             };
-            backup.Devices.AddDevice(_command.CombinedFilePath, DeviceType.File);
+            backup.Devices.AddDevice(_command.FullSavePath, DeviceType.File);
             backup.SqlBackup(_server);
 
             //// Backup Tail Log to Url

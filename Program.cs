@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using Args;
+using Serilog;
+using System.Configuration;
 
 namespace DatabaseMinder
 {
     /// <summary>
-    /// /b /f "FinPowerConnect_Production.bak" /x D:\Sql\FinPowerConnect_Production
+    /// see app.config for switches
     /// </summary>
     public class Program
     {
         private static void Main(string[] args)
         {
             Message.ShowHeader();
+            string logFileName = $"log.log";
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.ColoredConsole()
+                .WriteTo.RollingFile($"{AppDomain.CurrentDomain.BaseDirectory}\\logs\\{logFileName}")
+                .CreateLogger();
+
+            Log.Logger.Information("Database minder started...");
 
             var command = ParseArgs(args);
 
@@ -32,22 +41,55 @@ namespace DatabaseMinder
         {
             if (!args.Any())
             {
-                Consoler.Write("{0}{0}No args passed to setup{0}{0}", Environment.NewLine);
+                Consoler.Write("No args passed to setup", Environment.NewLine);
                 Message.ShowHelpAndExit();
                 Environment.Exit(1);
             }
 
-            Consoler.Write("{0}{0}Args received{0}", Environment.NewLine);
+            Consoler.Write("Args received");
 
             var cleaned = CleanArgs(args);
-            var command = Configuration.Configure<CommandArgs>().CreateAndBind(cleaned);
+            var command = Args.Configuration.Configure<CommandArgs>().CreateAndBind(cleaned);
             if (command == null)
             {
                 Consoler.Write("Error with args");
                 Environment.Exit(1);
             }
 
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["EnableArgsModeViaConfig"]))
+            {
+                Consoler.Write("EnableArgsModeViaConfig == true");
+                LoadArgsFromConfig(command);
+            }
+
             return command;
+        }
+
+        private static void LoadArgsFromConfig(CommandArgs command)
+        {
+            command.Backup = Convert.ToBoolean(ConfigurationManager.AppSettings["Backup"]);
+            command.PromptsEnabled = Convert.ToBoolean(ConfigurationManager.AppSettings["PromptsEnabled"]);
+
+            if (string.IsNullOrEmpty(command.DatabaseName))
+            {
+                command.DatabaseName = ConfigurationManager.AppSettings["DatabaseName"];
+            }
+
+            if (string.IsNullOrEmpty(command.SaveDirectory))
+            {
+                command.SaveDirectory = ConfigurationManager.AppSettings["SaveDirectory"];
+            }
+
+            if (string.IsNullOrEmpty(command.FileName))
+            {
+                command.FileName = string.Format(ConfigurationManager.AppSettings["FileName"], DateTime.Now.ToString("yyyyMMdd"));
+            }
+
+
+            if (string.IsNullOrEmpty(command.ConnectionString))
+            {
+                command.ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            }
         }
 
         /// <summary>

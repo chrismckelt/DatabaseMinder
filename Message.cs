@@ -32,12 +32,12 @@ namespace DatabaseMinder
             Consoler.Write("\t/s ServerName - eg localhost");
             Consoler.Write("\t/f Filename - eg ExampleDatabase.bak  ExampleZip.zip");
             Consoler.Write("\t/r Restore - Restore database");
-            Consoler.Write("\t/b Backup - Backup database. Server name and ToDirectory required");
+            Consoler.Write("\t/b Backup - Backup database. Server name and SaveDirectory required");
             //Consoler.Write("\t/c ConnectionString - for backups / restore");
             Consoler.Write("\t/d DatabaseName - backup / restore name for the DB");
             Consoler.Write("\t/n PromptsEnabled - Uses this flag on build server to skip any prompt");
             Consoler.Write("\t/x XfromDirectory");
-            Consoler.Write("\t/t ToDirectory");
+            Consoler.Write("\t/t SaveDirectory");
             ShowPauseAndExit(noPrompt);
         }
 
