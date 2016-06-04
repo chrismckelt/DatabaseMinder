@@ -11,7 +11,7 @@ namespace DatabaseMinder
         public bool Download { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
-        public string ZipFileName { get; set; }
+        public bool ZipBackup { get; set; }
         public string XfromDirectory { get; set; }
         public string Folder { get; set; }
         public string ServerName { get; set; }

@@ -16,14 +16,7 @@ namespace DatabaseMinder
             backup.Devices.AddDevice(fullSavePath, DeviceType.File);
             backup.SqlBackup(server);
             Consoler.Information($"Database backed up and saved to {fullSavePath}");
-            //// Backup Tail Log to Url
-            //var backupTailLog = new Backup();
-            //backupTailLog.CredentialName = _command.NameOfCredentials;
-            //backupTailLog.Database = _command.DatabaseName;
-            //backupTailLog.Action = BackupActionType.Log;
-            //backupTailLog.NoRecovery = true;
-            //backupTailLog.Devices.AddDevice(_command.FileName, DeviceType.Url);
-            //backupTailLog.SqlBackup(server);
+
         }
     }
 }

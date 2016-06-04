@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -47,6 +48,16 @@ namespace DatabaseMinder
 
             Consoler.Write("Backup requested...");
             BackupDatabase.Execute(_server, _command.DatabaseName, _command.NameOfCredentials, _command.BackFullPath);
+
+            if (_command.ZipBackup)
+            {
+                var dir = $"{Path.GetDirectoryName(_command.BackFullPath)}\\backup_{_command.DatabaseName}_{DateTime.Now.ToString("yyyyMMdd")}";
+                Directory.CreateDirectory(dir);
+                File.Move(_command.BackFullPath,Path.Combine(dir, Path.GetFileName(_command.BackFullPath))); // add extract folder name in for zipping, move file into it then zip it
+                ZipFile.CreateFromDirectory(dir,_command.BackFullPath.Replace(".bak", ".zip"),CompressionLevel.Optimal,false);
+                Directory.Delete(dir,true);
+                
+            }
         }
 
         private static void DoRestore()

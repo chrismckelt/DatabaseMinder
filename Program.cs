@@ -69,6 +69,7 @@ namespace DatabaseMinder
         {
             command.Backup = Convert.ToBoolean(ConfigurationManager.AppSettings["Backup"]);
             command.Restore = Convert.ToBoolean(ConfigurationManager.AppSettings["Restore"]);
+            command.ZipBackup = Convert.ToBoolean(ConfigurationManager.AppSettings["ZipBackup"]);
             command.PromptsEnabled = Convert.ToBoolean(ConfigurationManager.AppSettings["PromptsEnabled"]);
 
             if (string.IsNullOrEmpty(command.DatabaseName))
