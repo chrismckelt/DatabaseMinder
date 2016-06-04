@@ -17,7 +17,7 @@ namespace DatabaseMinder
             Message.ShowHeader();
             string logFileName = $"log.log";
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.ColoredConsole()
+               // .WriteTo.ColoredConsole()
                 .WriteTo.RollingFile($"{AppDomain.CurrentDomain.BaseDirectory}\\logs\\{logFileName}")
                 .CreateLogger();
 
@@ -68,6 +68,7 @@ namespace DatabaseMinder
         private static void LoadArgsFromConfig(CommandArgs command)
         {
             command.Backup = Convert.ToBoolean(ConfigurationManager.AppSettings["Backup"]);
+            command.Restore = Convert.ToBoolean(ConfigurationManager.AppSettings["Restore"]);
             command.PromptsEnabled = Convert.ToBoolean(ConfigurationManager.AppSettings["PromptsEnabled"]);
 
             if (string.IsNullOrEmpty(command.DatabaseName))
@@ -75,9 +76,9 @@ namespace DatabaseMinder
                 command.DatabaseName = ConfigurationManager.AppSettings["DatabaseName"];
             }
 
-            if (string.IsNullOrEmpty(command.SaveDirectory))
+            if (string.IsNullOrEmpty(command.Folder))
             {
-                command.SaveDirectory = ConfigurationManager.AppSettings["SaveDirectory"];
+                command.Folder = ConfigurationManager.AppSettings["Folder"];
             }
 
             if (string.IsNullOrEmpty(command.FileName))
@@ -85,6 +86,10 @@ namespace DatabaseMinder
                 command.FileName = string.Format(ConfigurationManager.AppSettings["FileName"], DateTime.Now.ToString("yyyyMMdd"));
             }
 
+            if (string.IsNullOrEmpty(command.NameOfCredentials))
+            {
+                command.NameOfCredentials = ConfigurationManager.AppSettings["NameOfCredentials"];
+            }
 
             if (string.IsNullOrEmpty(command.ConnectionString))
             {

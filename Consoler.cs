@@ -28,6 +28,15 @@ namespace DatabaseMinder
             Console.WriteLine("");
         }
 
+        public static void Information(string text)
+        {
+            Serilog.Log.Information(text);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("------------------------");
+            Console.WriteLine(text);
+            Console.WriteLine("------------------------");
+        }
+
         public static void Title(string text)
         {
             Serilog.Log.Information(text);

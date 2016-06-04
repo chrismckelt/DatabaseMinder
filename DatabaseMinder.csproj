@@ -84,6 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RestoreDatabase.cs" />
+    <Compile Include="BackupDatabase.cs" />
     <Compile Include="CommandArgs.cs" />
     <Compile Include="Consoler.cs" />
     <Compile Include="Extensions.cs" />
