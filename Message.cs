@@ -15,7 +15,7 @@ namespace DatabaseMinder
             sb.AppendLine("- database backup");
             sb.AppendLine("- database restore");
             sb.AppendLine("- zip .bak files");
-            Consoler.ShowHeader("Database Minder", sb.ToString());
+            Consoler.ShowHeader("DatabaseName Minder", sb.ToString());
         }
 
         public static void ShowHelpAndExit(bool noPrompt = false)
@@ -25,38 +25,38 @@ namespace DatabaseMinder
             Consoler.Write("");
             Consoler.Write("Example:");
             Consoler.Write("");
-            Consoler.Write(@"DatabaseMinder.exe /b /u /c CONNECTION STRING GOES HERE");
+            Consoler.Write(@"DatabaseMinder.exe /e /p /b /z /d DatabaseMinder /f c:\temp");
             Consoler.Write("");
             Consoler.Write("Arguments:");
             Consoler.Write("");
-          //  Consoler.Write("\t/s ServerName - eg localhost");
-            Consoler.Write("\t/f Filename - eg ExampleDatabase.bak  ExampleZip.zip");
-            Consoler.Write("\t/r Restore - Restore database");
-            Consoler.Write("\t/b Backup - Backup database. Server name and Folder required");
+            Consoler.Write("\t/e EnableArgsModeViaConfig - true or false --> use config args or command line args");
+            Consoler.Write("\t/p PromptsEnabled - true or false -->  pause and show prompts on the console (or skip)");
+            Consoler.Write("\t/r Restore - true or false --> Restore database");
+            Consoler.Write("\t/b Backup - true or false --> Backup database");
+            Consoler.Write("\t/d DatabaseName - the database name to back or restore");
+            Consoler.Write("\t/s ServerName - leave blank for localhost");
+            Consoler.Write("\t/f Folder - folder to use for backup,restore,zip");
             //Consoler.Write("\t/c ConnectionString - for backups / restore");
-            Consoler.Write("\t/d DatabaseName - backup / restore name for the DB");
-            Consoler.Write("\t/n PromptsEnabled - Uses this flag on build server to skip any prompt");
-           
-            Consoler.Write("\t/t Folder");
+            Consoler.Write("\t/z ZipBackup -  true or false --> after backup zip the .bak file");
             ShowPauseAndExit(noPrompt);
         }
 
-        public static void ShowCompletedAndExit(bool noPrompt = false)
+        public static void ShowCompletedAndExit(bool noPrompt = true)
         {
             Consoler.Success(noPrompt);
-            Environment.Exit(0);
+            if (noPrompt) Environment.Exit(0);
         }
 
-        public static void ShowErrorAndExit(Exception e, bool noPrompt = false)
+        public static void ShowErrorAndExit(Exception e, bool noPrompt = true)
         {
             Consoler.ShowError(e, noPrompt);
-            Environment.Exit(1);
+            if (noPrompt) Environment.Exit(0);
         }
 
-        public static void ShowPauseAndExit(bool noPrompt = false)
+        public static void ShowPauseAndExit(bool noPrompt = true)
         {
             Consoler.Pause(noPrompt);
-            Environment.Exit(0);
+            if (noPrompt) Environment.Exit(0);
         }
     }
 }

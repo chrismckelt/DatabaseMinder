@@ -16,7 +16,7 @@ namespace DatabaseMinder
             _command = command;
             ShowHelp(command);
             SetupServer(command);
-            EnsureDirectoriesExist(command.Folder, command.XfromDirectory);
+            EnsureDirectoriesExist(command.Folder);
             DoBackup();
             DoRestore();
         }

@@ -99,7 +99,7 @@ namespace DatabaseMinder
             Console.WriteLine(text);
         }
 
-        public static void Success(bool noPrompt = false)
+        public static void Success(bool promptEnabled = false)
         {
             Serilog.Log.Information("Success");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -108,10 +108,10 @@ namespace DatabaseMinder
             Console.WriteLine("-------------------------------");
             Console.WriteLine("Success");
             Console.WriteLine("");
-            Pause(noPrompt);
+            Pause(promptEnabled);
         }
 
-        public static void ShowError(Exception e, bool noPrompt = false)
+        public static void ShowError(Exception e, bool promptEnabled = false)
         {
             Serilog.Log.Error(e, "Error");
             Console.WriteLine("");
@@ -124,17 +124,17 @@ namespace DatabaseMinder
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine(e);
-            Pause(noPrompt);
+            Pause(promptEnabled);
         }
 
 
-        public static void Pause(bool noPrompt = false)
+        public static void Pause(bool promptEnabled = false)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Write("");
             Write("\nPress any key to exit.");
-            if (noPrompt) return;
-            Console.ReadLine();
+            if (promptEnabled) Console.ReadLine();
+
         }
     }
 }

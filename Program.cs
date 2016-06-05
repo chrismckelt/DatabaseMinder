@@ -21,7 +21,7 @@ namespace DatabaseMinder
                 .WriteTo.RollingFile($"{AppDomain.CurrentDomain.BaseDirectory}\\logs\\{logFileName}")
                 .CreateLogger();
 
-            Log.Logger.Information("Database minder started...");
+            Log.Logger.Information("DatabaseName minder started...");
 
             var command = ParseArgs(args);
 
@@ -56,9 +56,9 @@ namespace DatabaseMinder
                 Environment.Exit(1);
             }
 
-            if (Convert.ToBoolean(ConfigurationManager.AppSettings["EnableArgsModeViaConfig"]))
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["DatabaseMinder.EnableArgsModeViaConfig"]))
             {
-                Consoler.Write("EnableArgsModeViaConfig == true");
+                Consoler.Write("DatabaseMinder.EnableArgsModeViaConfig == true");
                 LoadArgsFromConfig(command);
             }
 
@@ -67,34 +67,25 @@ namespace DatabaseMinder
 
         private static void LoadArgsFromConfig(CommandArgs command)
         {
-            command.Backup = Convert.ToBoolean(ConfigurationManager.AppSettings["Backup"]);
-            command.Restore = Convert.ToBoolean(ConfigurationManager.AppSettings["Restore"]);
-            command.ZipBackup = Convert.ToBoolean(ConfigurationManager.AppSettings["ZipBackup"]);
-            command.PromptsEnabled = Convert.ToBoolean(ConfigurationManager.AppSettings["PromptsEnabled"]);
+            command.Backup = Convert.ToBoolean(ConfigurationManager.AppSettings["DatabaseMinder.Backup"]);
+            command.Restore = Convert.ToBoolean(ConfigurationManager.AppSettings["DatabaseMinder.Restore"]);
+            command.ZipBackup = Convert.ToBoolean(ConfigurationManager.AppSettings["DatabaseMinder.ZipBackup"]);
+            command.PromptsEnabled = Convert.ToBoolean(ConfigurationManager.AppSettings["DatabaseMinder.PromptsEnabled"]);
 
             if (string.IsNullOrEmpty(command.DatabaseName))
             {
-                command.DatabaseName = ConfigurationManager.AppSettings["DatabaseName"];
+                command.DatabaseName = ConfigurationManager.AppSettings["DatabaseMinder.DatabaseName"];
+               
             }
 
             if (string.IsNullOrEmpty(command.Folder))
             {
-                command.Folder = ConfigurationManager.AppSettings["Folder"];
-            }
-
-            if (string.IsNullOrEmpty(command.FileName))
-            {
-                command.FileName = string.Format(ConfigurationManager.AppSettings["FileName"], DateTime.Now.ToString("yyyyMMdd"));
+                command.Folder = ConfigurationManager.AppSettings["DatabaseMinder.Folder"];
             }
 
             if (string.IsNullOrEmpty(command.NameOfCredentials))
             {
-                command.NameOfCredentials = ConfigurationManager.AppSettings["NameOfCredentials"];
-            }
-
-            if (string.IsNullOrEmpty(command.ConnectionString))
-            {
-                command.ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+                command.NameOfCredentials = ConfigurationManager.AppSettings["DatabaseMinder.NameOfCredentials"];
             }
         }
 
