@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>DatabaseMinder</id>
+        <version>1.0.0</version>
+        <title>Database Minder</title>
+        <authors>Chris McKelt</authors>
+        <projectUrl>https://github.com/chrismckelt/databaseminder</projectUrl>
+        <iconUrl>http://postimg.org/image/ba2xcwft7/</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Command line utility to backup, restore and zip MSSQL databases</description>
+        <summary>Command line utility to backup, restore and zip MSSQL databases</summary>
+        <releaseNotes>Initial release</releaseNotes>
+        <copyright>Chris McKelt</copyright>
+        <language>en-US</language>
+        <tags>sql database mssql backup restore</tags>
+        <dependencies>
+            <group targetFramework="v4.5.2">
+                <dependency id="Args" version="1.1.2" />
+                <dependency id="Serilog" version="1.5.14" />
+                <dependency id="Unofficial.Microsoft.SQLServer.SMO.2014" version="12.0.2000.8" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\bin\Release\DatabaseMinder.dll" target="content\net452\DatabaseMinder.dll" />
+        <file src="..\bin\Release\DatabaseMinder.pdb" target="content\net452\DatabaseMinder.pdb" />
+    </files>
+</package>

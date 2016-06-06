@@ -25,7 +25,7 @@ namespace DatabaseMinder
             Consoler.Write("");
             Consoler.Write("Example:");
             Consoler.Write("");
-            Consoler.Write(@"DatabaseMinder.exe /e /p /b /z /d DatabaseMinder /f c:\temp");
+            Consoler.Write(@"DatabaseMinder.Runner.exe /e /p /b /z /d DatabaseMinder /f c:\temp");
             Consoler.Write("");
             Consoler.Write("Arguments:");
             Consoler.Write("");
