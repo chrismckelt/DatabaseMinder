@@ -1,2 +1,2 @@
-cd "C:\dev\DatabaseMinder\bin\Debug\"
-DatabaseMinder.exe 
+cd "C:\dev\DatabaseMinder\Runner\bin\Debug"
+DatabaseMinder.Runner.exe 

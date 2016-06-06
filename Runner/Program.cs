@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Args;
-using Serilog;
 using System.Configuration;
+using System.Linq;
+using Serilog;
 
-namespace DatabaseMinder
+namespace DatabaseMinder.Runner
 {
     /// <summary>
     /// see app.config for switches
