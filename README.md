@@ -10,4 +10,15 @@ This utility performs actions such as
  
 ![image](https://cloud.githubusercontent.com/assets/662868/15823597/f85229f4-2c2d-11e6-9dd9-84b7c4be07cb.png)
 
+
+## Linqpad sample backup with reference from nuget
+
+    var args = new DatabaseMinder.CommandArgs();
+	args.DatabaseName = "DatabaseMinder";
+	args.Backup = true;
+	args.Folder = @"c:\temp";
+	args.PromptsEnabled = false;
+	args.ZipBackup = true;
+	DatabaseMinder.Handler.HandleCommand(args);
+
 ### PRs/Issues/Comments welcome!
