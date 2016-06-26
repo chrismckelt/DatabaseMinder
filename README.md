@@ -1,4 +1,4 @@
-# DatabaseMinder
+## DatabaseMinder  -- requests welcome
 
 ### Backup and zip or restore a MS SQL database library with command line runner.
 
