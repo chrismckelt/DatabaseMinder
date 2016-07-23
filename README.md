@@ -2,7 +2,9 @@
 
 **Backup and zip or restore a MS SQL database library with command line runner**
 
-### Command line runner NOT in nuget package - see LINQPAD reference for use down below ###
+### Command line runner NOT included in nuget package ###
+
+#### see LINQPAD reference for use down below ####
 
 
 **if you would like a separate NUGET package let me know & Ill make it**
