@@ -4,7 +4,7 @@
 
 ### Command line runner NOT included in nuget package ###
 
-#### see LINQPAD reference for use down below ####
+#### see LINQPAD reference for use (down below) ####
 
 
 **if you would like a separate NUGET package let me know & Ill make it**
