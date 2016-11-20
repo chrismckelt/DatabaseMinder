@@ -1,6 +1,6 @@
-## DatabaseMinder  -- requests welcome
-
 [![databaseminder MyGet Build Status](https://www.myget.org/BuildSource/Badge/databaseminder?identifier=3271b45e-de61-41e8-b1a1-7a3188a700e4)](https://www.myget.org/)
+
+## DatabaseMinder  -- requests welcome --> just raise an issue
 
 **Backup and zip or restore a MS SQL database library with command line runner**
 
