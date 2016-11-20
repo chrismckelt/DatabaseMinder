@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 
 namespace DatabaseMinder
 {
@@ -14,8 +14,9 @@ namespace DatabaseMinder
         public string ServerName { get; set; }
         public bool PromptsEnabled { get; set; }
         public string NameOfCredentials { get; set; }
+        public string DateTimeFormat { get; set; }
 
-        public string BackFullPath => System.IO.Path.Combine(Folder, DatabaseName.ToFileName("bak"));
+        public string BackFullPath => Path.Combine(Folder, DatabaseName.ToFileName("bak", DateTimeFormat));
 
     }
 }

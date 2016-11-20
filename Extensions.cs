@@ -6,9 +6,13 @@ namespace DatabaseMinder
     public static class Extensions
     {
 
-        public static string ToFileName(this string databaseName, string extension = null)
+        public static string ToFileName(this string databaseName, string extension = null, string dateTimeFormat = null)
         {
-            return string.IsNullOrEmpty(extension) ? ($"{databaseName}_{DateTime.Now.ToString("yyyyMMdd")}") : ($"{databaseName}_{DateTime.Now.ToString("yyyyMMdd")}.{extension}");
+            string dateTime = DateTime.Now.ToString(dateTimeFormat ?? "yyyyMMdd_HH-mm-ss");
+
+            return string.IsNullOrEmpty(extension) ?
+                $"{databaseName}_{dateTime}" :
+                $"{databaseName}_{dateTime}.{extension}";
         }
 
         public static string WithoutExtension(this string filepath)
