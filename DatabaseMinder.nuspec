@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DatabaseMinder</id>
+    <version>$version$</version>
+    <authors>Chris McKelt</authors>
+    <owners>Chris McKelt</owners>
+    <licenseUrl>https://github.com/chrismckelt/databaseminder</licenseUrl>
+    <projectUrl>https://github.com/chrismckelt/databaseminder</projectUrl>
+    <iconUrl>https://cloud.githubusercontent.com/assets/13381578/18774098/43a25b90-8188-11e6-9537-f745e0c8eb06.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Backup and zip or restore a MS SQL database library with command line runner</description>
+    <releaseNotes>nuspec added</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>DatabaseMinder sql backup restore</tags>
+  </metadata>
+</package>

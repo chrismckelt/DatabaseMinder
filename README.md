@@ -20,8 +20,7 @@ This utility performs actions such as
 
 
 
-
-## Linqpad sample backup with reference from nuget
+## BACKUP with reference from nuget
 
     var args = new DatabaseMinder.CommandArgs();
 	args.DatabaseName = "DatabaseMinder";
@@ -30,5 +29,9 @@ This utility performs actions such as
 	args.PromptsEnabled = false;
 	args.ZipBackup = true;
 	DatabaseMinder.Handler.HandleCommand(args);
+
+## Restore a database from a folder (should contain at least 1 .bak file)
+
+    DatabaseMinder.RestoreDatabase.RestoreDatabaseFromFolder(new Server(), "exampleDB_Name", @"c:\path_to_backup");
 
 ### PRs/Issues/Comments welcome!
