@@ -42,13 +42,13 @@ namespace DatabaseMinder
             Restore restore = new Restore
             {
                 Database = databaseName,
-                ReplaceDatabase = true
+                ReplaceDatabase = true,
+                
             };
 
             restore.Devices.AddDevice(bakFile, DeviceType.File);
             restore.Information += Restore_Information;
-
-
+             
             var fileList = restore.ReadFileList(server);
 
             // restore to new location
@@ -71,6 +71,8 @@ namespace DatabaseMinder
 
             server.KillAllProcesses(databaseName);
             Consoler.Information($"KillAllProcesses");
+            server.ConnectionContext.StatementTimeout = 0;
+            server.ConnectionContext.ConnectTimeout = 0;
             restore.SqlRestore(server);
             Consoler.Information($"Database restored ");
         }
