@@ -68,7 +68,7 @@ namespace DatabaseMinder
             }
 
             Consoler.Write("Restore requested...");
-            RestoreDatabase.Execute(_server, _command.Folder, _command.DatabaseName);
+            RestoreDatabase.Execute(_server,_command.DatabaseName, _command.BackFullPath, _command.Folder);
         }
 
         private static void EnsureDirectoriesExist(params string[] paths)
