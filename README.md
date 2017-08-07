@@ -32,6 +32,6 @@ This utility performs actions such as
 
 ## Restore a database from a folder (should contain at least 1 .bak file)
 
-    DatabaseMinder.RestoreDatabase.RestoreDatabaseFromFolder(new Server(), "exampleDB_Name", @"c:\path_to_backup");
+    DatabaseMinder.RestoreDatabase.RestoreDatabaseFromFolder(new Server(), "exampleDB_Name", @"c:\path_to_backup","@c:\path_to_save_mdf_and_ldf");
 
 ### PRs/Issues/Comments welcome!
