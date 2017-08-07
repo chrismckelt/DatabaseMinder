@@ -7,27 +7,26 @@ namespace DatabaseMinder
 {
     public static class RestoreDatabase
     {
-        public static void RestoreDatabaseFromFolder(Server server, string databaseName, string backupPath)
+        public static void RestoreDatabaseFromFolder(Server server, string databaseName, string backupFolderPath, string saveMdfFolder)
         {
-            Consoler.Write(backupPath);
-            foreach (var file in Directory.EnumerateFiles(backupPath, "*.bak").OrderBy(x => x))
+            Consoler.Write(backupFolderPath);
+            foreach (var file in Directory.EnumerateFiles(backupFolderPath, "*.bak").OrderBy(x => x))
             {
                 try
                 {
                     Consoler.Write(file);
-                    Execute(server,databaseName, file);
+                    Execute(server, databaseName, file, saveMdfFolder);
                 }
                 catch (Exception ex)
                 {
-                    Consoler.Warn("bak restore failed", backupPath);
+                    Consoler.Warn("bak restore failed", backupFolderPath);
                     Consoler.Error(ex.ToString());
                 }
             }
         }
 
-        public static void Execute(Server server, string folder, string databaseName)
+        public static void Execute(Server server, string databaseName, string bakFile, string saveMdfFolder)
         {
-            var bak = Directory.EnumerateFiles(folder, "*.bak").First(x => x.Contains(databaseName));
             //If the database doesn't exist, create it so that we have something
             //to overwrite.
             if (!server.Databases.Contains(databaseName))
@@ -46,7 +45,7 @@ namespace DatabaseMinder
                 ReplaceDatabase = true
             };
 
-            restore.Devices.AddDevice(bak, DeviceType.File);
+            restore.Devices.AddDevice(bakFile, DeviceType.File);
             restore.Information += Restore_Information;
 
 
@@ -56,13 +55,13 @@ namespace DatabaseMinder
             var dataFile = new RelocateFile
             {
                 LogicalFileName = fileList.Rows[0][0].ToString(),
-                PhysicalFileName = Path.Combine(folder, databaseName.WithoutExtension() + ".mdf")
+                PhysicalFileName = Path.Combine(saveMdfFolder, databaseName.WithoutExtension() + ".mdf")
             };
 
             var logFile = new RelocateFile
             {
                 LogicalFileName = fileList.Rows[1][0].ToString(),
-                PhysicalFileName = Path.Combine(folder, databaseName.WithoutExtension() + "_log.log")
+                PhysicalFileName = Path.Combine(saveMdfFolder, databaseName.WithoutExtension() + "_log.log")
             };
 
             restore.RelocateFiles.Add(dataFile);
