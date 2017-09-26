@@ -9,6 +9,7 @@ namespace DatabaseMinder
         public bool Restore { get; set; }
         public string DatabaseName { get; set; }
         public bool ZipBackup { get; set; }
+        public bool CompressionEnabled { get; set; }
 
         public string Folder { get; set; }
         public string ServerName { get; set; }

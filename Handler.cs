@@ -47,7 +47,7 @@ namespace DatabaseMinder
             }
 
             Consoler.Write("Backup requested...");
-            BackupDatabase.Execute(_server, _command.DatabaseName, _command.NameOfCredentials, _command.BackFullPath);
+            BackupDatabase.Execute(_server, _command.DatabaseName, _command.NameOfCredentials, _command.BackFullPath, _command.CompressionEnabled);
 
             if (_command.ZipBackup)
             {
