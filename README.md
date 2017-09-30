@@ -27,6 +27,7 @@ This utility performs actions such as
 	args.Backup = true;
 	args.Folder = @"c:\temp";
 	args.PromptsEnabled = false;
+	args.CompressionEnabled  - true;
 	args.ZipBackup = true;
 	DatabaseMinder.Handler.HandleCommand(args);
 
