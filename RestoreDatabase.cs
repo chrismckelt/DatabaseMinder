@@ -21,6 +21,7 @@ namespace DatabaseMinder
                 {
                     Consoler.Warn("bak restore failed", backupFolderPath);
                     Consoler.Error(ex.ToString());
+                    throw;
                 }
             }
         }
