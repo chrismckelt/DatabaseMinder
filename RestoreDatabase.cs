@@ -28,6 +28,8 @@ namespace DatabaseMinder
 
         public static void Execute(Server server, string databaseName, string bakFile, string saveMdfFolder)
         {
+            server.ConnectionContext.StatementTimeout = 0;
+            server.ConnectionContext.ConnectTimeout = 0;
             //If the database doesn't exist, create it so that we have something
             //to overwrite.
             if (!server.Databases.Contains(databaseName))
@@ -72,8 +74,6 @@ namespace DatabaseMinder
 
             server.KillAllProcesses(databaseName);
             Consoler.Information($"KillAllProcesses");
-            server.ConnectionContext.StatementTimeout = 0;
-            server.ConnectionContext.ConnectTimeout = 0;
             restore.SqlRestore(server);
             Consoler.Information($"Database restored ");
         }
